@@ -26,12 +26,23 @@
         @media print {
             .no-print { display: none !important; }
             body { background: white; padding-bottom: 0; }
-            .container { max-width: 100% !important; width: 100% !important; margin: 0 !important; padding: 10px !important; }
-            header { background: #1e3a8a !important; color: white !important; -webkit-print-color-adjust: exact; padding: 15px !important; }
-            .section-card { box-shadow: none !important; border: 1px solid #e2e8f0 !important; margin-bottom: 10px !important; padding: 15px !important; }
-            .signatures-grid { margin-top: 15px !important; gap: 10px !important; }
-            textarea { min-height: 80px !important; }
+            .container { max-width: 100% !important; width: 100% !important; margin: 0 !important; padding: 15px !important; }
+            header { background: #1e3a8a !important; color: white !important; -webkit-print-color-adjust: exact; padding: 20px !important; }
+            .section-card { box-shadow: none !important; border: 1px solid #e2e8f0 !important; margin-bottom: 15px !important; padding: 20px !important; }
+            .signatures-grid { margin-top: 20px !important; gap: 15px !important; }
+            
+            /* Page Break Control */
+            .page-break { page-break-before: always; }
+            
+            /* Adjusting Textareas for 6-8 points */
+            .skills-box { height: 350px !important; }
+            textarea { height: 100% !important; }
         }
+        
+        .skills-box {
+            height: 300px;
+        }
+
         .check-item {
             display: flex;
             align-items: center;
@@ -75,51 +86,52 @@
 
     <main class="container mx-auto px-4 py-6 max-w-6xl">
         
-        <!-- Section 1: Basic Information -->
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-6 section-card">
-            <h2 class="text-lg font-bold mb-4 text-blue-800 border-r-4 border-blue-600 pr-3">أولاً: المعلومات الأساسية</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div>
-                    <label class="block text-xs font-semibold text-gray-600 mb-1">اسم المدرسة</label>
-                    <input type="text" placeholder="..................................." class="report-input text-sm">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-gray-600 mb-1">المادة (القراءة - الرياضيات - العلوم)</label>
-                    <input type="text" placeholder="..................................." class="report-input text-sm">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-gray-600 mb-1">الصف</label>
-                    <input type="text" placeholder="..................................." class="report-input text-sm">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-gray-600 mb-1">عدد الطلاب</label>
-                    <input type="number" placeholder="0" class="report-input text-center text-sm">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-gray-600 mb-1">تاريخ الاختبار</label>
-                    <input type="text" placeholder="-- / -- / 1447هـ" class="report-input text-center text-sm">
+        <!-- SECTION 1: Page 1 Container for Print -->
+        <div class="page-1">
+            <!-- Section 1: Basic Information -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-6 section-card">
+                <h2 class="text-lg font-bold mb-4 text-blue-800 border-r-4 border-blue-600 pr-3">أولاً: المعلومات الأساسية</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">اسم المدرسة</label>
+                        <input type="text" placeholder="..................................." class="report-input text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">المادة (القراءة - الرياضيات - العلوم)</label>
+                        <input type="text" placeholder="..................................." class="report-input text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">الصف</label>
+                        <input type="text" placeholder="..................................." class="report-input text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">عدد الطلاب</label>
+                        <input type="number" placeholder="0" class="report-input text-center text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">تاريخ الاختبار</label>
+                        <input type="text" placeholder="-- / -- / 1447هـ" class="report-input text-center text-sm">
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Section 2: Test Goal -->
-        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-6 section-card text-center">
-            <h2 class="text-lg font-bold mb-3 text-blue-800 inline-block ml-6">ثانياً: هدف الاختبار:</h2>
-            <div class="inline-flex gap-8">
-                <label class="flex items-center gap-2 cursor-pointer">
-                    <input type="radio" name="goal" class="w-4 h-4 text-blue-600">
-                    <span class="text-sm font-medium">اختبار تشخيصي</span>
-                </label>
-                <label class="flex items-center gap-2 cursor-pointer">
-                    <input type="radio" name="goal" class="w-4 h-4 text-blue-600">
-                    <span class="text-sm font-medium">قياس تكويني</span>
-                </label>
+            <!-- Section 2: Test Goal -->
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-6 section-card text-center">
+                <h2 class="text-lg font-bold mb-3 text-blue-800 inline-block ml-6">ثانياً: هدف الاختبار:</h2>
+                <div class="inline-flex gap-8">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="goal" class="w-4 h-4 text-blue-600">
+                        <span class="text-sm font-medium">اختبار تشخيصي</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="goal" class="w-4 h-4 text-blue-600">
+                        <span class="text-sm font-medium">قياس تكويني</span>
+                    </label>
+                </div>
             </div>
-        </div>
 
-        <!-- Section 3: Test Description -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 section-card">
+            <!-- Section 3: Part 1 - General Descriptive Analysis -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-6 section-card">
                 <h2 class="text-lg font-bold mb-4 text-blue-800 border-r-4 border-indigo-600 pr-3">ثالثاً: التحليل الوصفي العام</h2>
                 <p class="text-sm text-gray-700 mb-3">مستوى الطلبة بصورة عامة في أداء الاختبار:</p>
                 <div class="flex gap-4 mb-5">
@@ -158,42 +170,65 @@
                     </tbody>
                 </table>
             </div>
+        </div>
 
-            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 section-card">
+        <!-- PAGE BREAK FOR PRINT -->
+        <div class="page-break"></div>
+
+        <!-- SECTION 2: Page 2 Container for Print -->
+        <div class="page-2">
+            <!-- Section 3: Part 2 - Skill Analysis (Enhanced Space) -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-6 section-card">
                 <h2 class="text-lg font-bold mb-4 text-blue-800 border-r-4 border-indigo-600 pr-3">تحليل المهارات</h2>
-                <div class="grid grid-cols-2 border border-gray-200 rounded-lg overflow-hidden h-32">
+                <div class="grid grid-cols-2 border border-gray-200 rounded-lg overflow-hidden skills-box">
                     <div class="flex flex-col border-l border-gray-200">
-                        <div class="bg-green-50 p-1 text-center text-xs font-bold text-green-800 border-b">نقاط القوة</div>
-                        <textarea class="flex-grow p-2 text-xs resize-none outline-none leading-relaxed" placeholder="أظهر الطلاب تقدماً في المهارات التالية: ">أظهر الطلاب تقدماً في المهارات التالية: </textarea>
+                        <div class="bg-green-50 p-2 text-center text-sm font-bold text-green-800 border-b">نقاط القوة</div>
+                        <textarea class="flex-grow p-3 text-sm resize-none outline-none leading-relaxed" placeholder="أظهر الطلاب تقدماً في المهارات التالية: ">أظهر الطلاب تقدماً في المهارات التالية: 
+1. 
+2. 
+3. 
+4. 
+5. 
+6. 
+7. 
+8. </textarea>
                     </div>
                     <div class="flex flex-col">
-                        <div class="bg-red-50 p-1 text-center text-xs font-bold text-red-800 border-b">نقاط تحتاج تحسين</div>
-                        <textarea class="flex-grow p-2 text-xs resize-none outline-none leading-relaxed" placeholder="أظهر الطلاب انخفاضاً في المهارات التالية: ">أظهر الطلاب انخفاضاً في المهارات التالية: </textarea>
+                        <div class="bg-red-50 p-2 text-center text-sm font-bold text-red-800 border-b">نقاط تحتاج تحسين</div>
+                        <textarea class="flex-grow p-3 text-sm resize-none outline-none leading-relaxed" placeholder="أظهر الطلاب انخفاضاً في المهارات التالية: ">أظهر الطلاب انخفاضاً في المهارات التالية: 
+1. 
+2. 
+3. 
+4. 
+5. 
+6. 
+7. 
+8. </textarea>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Section 4: Teacher Needs -->
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-6 section-card">
-            <h2 class="text-lg font-bold mb-4 text-blue-800 border-r-4 border-blue-600 pr-3">رابعًا: احتياجات المعلم لمساندته في تحسين أداء طلبته</h2>
-            <textarea class="w-full h-20 p-3 bg-gray-50/50 border border-gray-100 rounded-lg text-sm outline-none resize-none" placeholder="اكتب الاحتياجات هنا..."></textarea>
-        </div>
+            <!-- Section 4: Teacher Needs -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-6 section-card">
+                <h2 class="text-lg font-bold mb-4 text-blue-800 border-r-4 border-blue-600 pr-3">رابعًا: احتياجات المعلم لمساندته في تحسين أداء طلبته</h2>
+                <textarea class="w-full h-24 p-3 bg-gray-50/50 border border-gray-100 rounded-lg text-sm outline-none resize-none" placeholder="اكتب الاحتياجات والمقترحات هنا..."></textarea>
+            </div>
 
-        <!-- Signatures Section (Single Line) -->
-        <div class="bg-white p-6 rounded-xl border border-gray-100 section-card">
-            <div class="grid grid-cols-3 gap-4 signatures-grid">
-                <div class="text-center border-t border-gray-200 pt-3">
-                    <p class="font-bold text-gray-700 text-sm mb-4">اسم المعلم</p>
-                    <input type="text" placeholder="............................" class="text-center w-full text-blue-900 font-bold border-none text-sm">
-                </div>
-                <div class="text-center border-t border-gray-200 pt-3">
-                    <p class="font-bold text-gray-700 text-sm mb-4">مقدم خدمة دعم التميز</p>
-                    <input type="text" placeholder="............................" class="text-center w-full text-blue-900 font-bold border-none text-sm">
-                </div>
-                <div class="text-center border-t border-gray-200 pt-3">
-                    <p class="font-bold text-gray-700 text-sm mb-4">اسم مدير المدرسة</p>
-                    <input type="text" placeholder="............................" class="text-center w-full text-blue-900 font-bold border-none text-sm">
+            <!-- Signatures Section (Now on Page 2 with Content) -->
+            <div class="bg-white p-6 rounded-xl border border-gray-100 section-card">
+                <div class="grid grid-cols-3 gap-4 signatures-grid">
+                    <div class="text-center border-t border-gray-200 pt-3">
+                        <p class="font-bold text-gray-700 text-sm mb-4">اسم المعلم</p>
+                        <input type="text" placeholder="............................" class="text-center w-full text-blue-900 font-bold border-none text-sm">
+                    </div>
+                    <div class="text-center border-t border-gray-200 pt-3">
+                        <p class="font-bold text-gray-700 text-sm mb-4">مقدم خدمة دعم التميز</p>
+                        <input type="text" placeholder="............................" class="text-center w-full text-blue-900 font-bold border-none text-sm">
+                    </div>
+                    <div class="text-center border-t border-gray-200 pt-3">
+                        <p class="font-bold text-gray-700 text-sm mb-4">اسم مدير المدرسة</p>
+                        <input type="text" placeholder="............................" class="text-center w-full text-blue-900 font-bold border-none text-sm">
+                    </div>
                 </div>
             </div>
         </div>
