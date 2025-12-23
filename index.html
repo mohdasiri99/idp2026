@@ -15,10 +15,11 @@
         }
         .report-input {
             border: 1px solid #cbd5e1;
-            padding: 6px 12px;
+            padding: 8px 12px;
             border-radius: 8px;
             width: 100%;
             background: #fff;
+            font-size: 0.875rem;
         }
         .skill-input-area {
             border: 1px dashed #94a3b8;
@@ -29,6 +30,13 @@
             background: #ffffff;
         }
         
+        /* تحسينات استجابة الجدول */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
         @media print {
             @page {
                 margin: 0.8cm;
@@ -41,14 +49,14 @@
             header { 
                 background: linear-gradient(to left, #1e3a8a, #3730a3) !important; 
                 color: white !important; 
-                padding: 25px !important;
-                border-radius: 0 0 20px 20px !important;
-                margin-bottom: 20px !important;
+                padding: 20px !important;
+                border-radius: 0 0 15px 15px !important;
+                margin-bottom: 15px !important;
             }
             .section-card { 
                 box-shadow: none !important; 
-                border: 1.5px solid #e2e8f0 !important; 
-                margin-bottom: 15px !important; 
+                border: 1.2px solid #e2e8f0 !important; 
+                margin-bottom: 12px !important; 
                 padding: 15px !important;
                 page-break-inside: avoid;
             }
@@ -59,18 +67,19 @@
             }
             
             .text-red-600 { color: #dc2626 !important; }
-            .text-indigo-900 { color: #1e1b4b !important; }
             .bg-green-600 { background-color: #16a34a !important; color: white !important; }
             .bg-red-600 { background-color: #dc2626 !important; color: white !important; }
             .bg-slate-800 { background-color: #1e293b !important; color: white !important; }
             
-            .skills-box { height: 480px !important; }
+            .skills-box { height: 480px !important; display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
             textarea { height: 100% !important; border: none !important; }
-            input::placeholder { color: transparent !important; }
+            
+            /* الحفاظ على توزيع التواقيع في السطر الواحد عند الطباعة */
+            .signatures-grid { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 1rem !important; }
         }
 
         .skills-box {
-            height: 400px;
+            min-height: 350px;
         }
 
         .check-item {
@@ -78,7 +87,7 @@
             align-items: center;
             gap: 8px;
             cursor: pointer;
-            padding: 6px 12px;
+            padding: 8px 14px;
             border-radius: 8px;
             background: #fff;
             border: 1px solid #e2e8f0;
@@ -102,19 +111,19 @@
         }
     </style>
 </head>
-<body class="text-slate-800 leading-relaxed">
+<body class="text-slate-800 leading-relaxed overflow-x-hidden">
 
     <!-- Header Section -->
-    <header class="bg-gradient-to-r from-blue-900 via-indigo-900 to-indigo-800 text-white shadow-xl pb-10">
-        <div class="container mx-auto px-6 py-8 text-center">
-            <div class="inline-block bg-blue-500/20 px-4 py-1 rounded-full text-blue-200 text-[10px] font-bold mb-3 border border-blue-400/30 no-print">
+    <header class="bg-gradient-to-r from-blue-900 via-indigo-900 to-indigo-800 text-white shadow-xl pb-10 sm:pb-12">
+        <div class="container mx-auto px-4 py-8 text-center">
+            <div class="inline-block bg-blue-500/20 px-4 py-1 rounded-full text-blue-200 text-[10px] font-bold mb-4 border border-blue-400/30 no-print">
                 نظام إدارة نواتج التعلم الرقمي
             </div>
-            <h1 class="text-2xl md:text-3xl font-extrabold mb-1">تقرير وصفي لتحليل اختبارات تحسين نواتج التعلم</h1>
-            <p class="text-md text-blue-100 font-light mb-4 opacity-90">(ضمن خطة مئة يوم) - لعام 1447هـ</p>
-            <div class="bg-white/5 inline-flex flex-col items-center px-8 py-3 rounded-2xl backdrop-blur-md border border-white/10 shadow-lg group">
+            <h1 class="text-xl md:text-3xl font-extrabold mb-2 px-2">تقرير وصفي لتحليل اختبارات تحسين نواتج التعلم</h1>
+            <p class="text-sm md:text-md text-blue-100 font-light mb-6 opacity-90">(ضمن خطة مئة يوم) - لعام 1447هـ</p>
+            <div class="bg-white/5 inline-flex flex-col items-center px-6 py-4 rounded-2xl backdrop-blur-md border border-white/10 shadow-lg group">
                 <span class="text-xs font-bold block text-white">إعداد وتصميم الأستاذ محمد علي عسيري</span>
-                <a href="https://x.com/mohdasiri99" target="_blank" class="text-[10px] text-blue-300 mt-1 font-sans hover:text-white transition-colors decoration-blue-400/50 underline-offset-4 hover:underline" dir="ltr">@mohdasiri99</a>
+                <a href="https://x.com/mohdasiri99" target="_blank" class="text-xs text-blue-300 mt-2 font-sans hover:text-white transition-all underline decoration-blue-400/30 underline-offset-4" dir="ltr">@mohdasiri99</a>
             </div>
         </div>
     </header>
@@ -122,136 +131,140 @@
     <main class="container mx-auto px-4 -mt-6 mb-12 max-w-5xl">
         
         <!-- PAGE 1 -->
-        <div class="page-1-wrapper">
-            <!-- Section 1: Basic Information -->
-            <div class="bg-white p-6 rounded-3xl shadow-xl border border-slate-100 section-card">
+        <div class="page-1-wrapper space-y-6">
+            <!-- Section 1: Basic Info -->
+            <div class="bg-white p-5 md:p-8 rounded-3xl shadow-xl border border-slate-100 section-card">
                 <h2 class="text-lg font-extrabold mb-5 text-indigo-900 flex items-center gap-3">
                     <span class="w-1.5 h-6 bg-blue-600 rounded-full"></span>
                     أولاً: المعلومات الأساسية
                 </h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                    <div>
-                        <label class="block text-[11px] font-bold text-slate-500 mb-1">اسم المدرسة</label>
-                        <input type="text" placeholder="..................." class="report-input text-sm">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                    <div class="space-y-1">
+                        <label class="block text-[11px] font-bold text-slate-500 mr-1">اسم المدرسة</label>
+                        <input type="text" placeholder="اكتب هنا..." class="report-input">
                     </div>
-                    <div>
-                        <label class="block text-[11px] font-bold text-slate-500 mb-1">المادة</label>
-                        <input type="text" placeholder="..................." class="report-input text-sm">
+                    <div class="space-y-1">
+                        <label class="block text-[11px] font-bold text-slate-500 mr-1">المادة</label>
+                        <input type="text" placeholder="اكتب هنا..." class="report-input">
                     </div>
-                    <div>
-                        <label class="block text-[11px] font-bold text-slate-500 mb-1">الصف</label>
-                        <input type="text" placeholder="..................." class="report-input text-sm">
+                    <div class="space-y-1">
+                        <label class="block text-[11px] font-bold text-slate-500 mr-1">الصف</label>
+                        <input type="text" placeholder="اكتب هنا..." class="report-input">
                     </div>
-                    <div>
-                        <label class="block text-[11px] font-bold text-slate-500 mb-1">عدد الطلاب</label>
-                        <input type="number" placeholder="0" class="report-input text-center text-sm font-bold text-blue-600">
+                    <div class="space-y-1">
+                        <label class="block text-[11px] font-bold text-slate-500 mr-1">عدد الطلاب</label>
+                        <input type="number" placeholder="0" class="report-input text-center font-bold text-blue-600">
                     </div>
-                    <div class="md:col-span-2">
-                        <label class="block text-[11px] font-bold text-slate-500 mb-1">تاريخ الاختبار</label>
-                        <input type="text" placeholder="1447هـ" class="report-input text-sm">
+                    <div class="space-y-1 sm:col-span-1 md:col-span-2">
+                        <label class="block text-[11px] font-bold text-slate-500 mr-1">تاريخ الاختبار</label>
+                        <input type="text" placeholder="مثال: 15 / 06 / 1447هـ" class="report-input">
                     </div>
                 </div>
             </div>
 
             <!-- Section 2: Goal -->
             <div class="bg-white p-5 rounded-3xl shadow-lg border border-slate-100 section-card">
-                <div class="flex flex-col md:flex-row items-center justify-center gap-8">
-                    <h2 class="text-md font-extrabold text-indigo-900">ثانياً: هدف الاختبار:</h2>
-                    <div class="flex gap-10">
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="radio" name="goal" class="w-4 h-4 text-blue-600">
-                            <span class="text-sm font-bold">اختبار تشخيصي</span>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
+                    <h2 class="text-md font-extrabold text-indigo-900">ثانياً: هدف الاختبار المجرى:</h2>
+                    <div class="flex gap-6 sm:gap-10">
+                        <label class="flex items-center gap-2 cursor-pointer group">
+                            <input type="radio" name="goal" class="w-4 h-4 text-blue-600 focus:ring-blue-500">
+                            <span class="text-sm font-bold group-hover:text-blue-600 transition-colors">اختبار تشخيصي</span>
                         </label>
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="radio" name="goal" class="w-4 h-4 text-blue-600">
-                            <span class="text-sm font-bold">قياس تكويني</span>
+                        <label class="flex items-center gap-2 cursor-pointer group">
+                            <input type="radio" name="goal" class="w-4 h-4 text-blue-600 focus:ring-blue-500">
+                            <span class="text-sm font-bold group-hover:text-blue-600 transition-colors">قياس تكويني</span>
                         </label>
                     </div>
                 </div>
             </div>
 
-            <!-- Nafis Instruction Section -->
+            <!-- Nafis Instruction -->
             <div class="bg-white p-6 rounded-3xl shadow-xl border border-slate-100 section-card overflow-hidden">
                 <div class="text-sm leading-relaxed">
                     <div class="flex items-baseline flex-wrap gap-2 mb-4">
                         <span class="text-slate-800 font-bold">تكوّن الاختبار من عدد (</span>
-                        <input type="text" placeholder="....." class="w-16 text-center border-b-2 border-red-200 focus:border-red-500 outline-none font-extrabold text-red-600 bg-red-50/50 rounded-t-md">
+                        <input type="text" placeholder="العدد" class="w-16 text-center border-b-2 border-red-200 focus:border-red-500 outline-none font-extrabold text-red-600 bg-red-50/30 rounded-t-md p-1">
                         <span class="text-slate-800 font-bold">) من الأسئلة المتنوعة التي تقيس المهارات المستهدفة في الاختبارات الوطنية <span class="text-blue-700">"نافس"</span>، وهي:</span>
                     </div>
-                    <p class="text-[11px] text-red-600 font-extrabold mb-2 italic">
+                    <p class="text-[11px] text-red-600 font-extrabold mb-2 italic flex items-center gap-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
                         (يكتب المعلم المهارات المستهدفة في الاختبار جميعها)
                     </p>
-                    <textarea class="skill-input-area outline-none text-sm text-slate-700 font-medium resize-none focus:ring-1 focus:ring-blue-100" placeholder="اكتب المهارات هنا..."></textarea>
+                    <textarea class="skill-input-area outline-none text-sm text-slate-700 font-medium resize-none focus:ring-1 focus:ring-blue-100" placeholder="ابدأ كتابة المهارات هنا..."></textarea>
                 </div>
             </div>
 
-            <!-- Quantitative Analysis Table -->
+            <!-- Analysis Table -->
             <div class="bg-white p-6 rounded-3xl shadow-xl border border-slate-100 section-card">
                 <h2 class="text-lg font-extrabold mb-5 text-indigo-900 flex items-center gap-3">
                     <span class="w-1.5 h-6 bg-indigo-600 rounded-full"></span>
                     ثالثاً: التحليل الوصفي العام
                 </h2>
-                <div class="flex items-center gap-6 mb-6">
-                    <p class="text-sm font-bold text-slate-600">مستوى الطلاب:</p>
-                    <div class="flex gap-4">
-                        <label class="check-item group">
+                <div class="flex flex-col md:flex-row items-center gap-4 md:gap-8 mb-6">
+                    <p class="text-sm font-bold text-slate-600">تقدير مستوى الطلاب:</p>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <label class="check-item group py-1.5">
                             <input type="checkbox" class="hidden">
-                            <span class="custom-checkbox"></span>
+                            <span class="custom-checkbox group-hover:scale-110"></span>
                             <span class="text-xs font-extrabold text-green-700">مرتفع</span>
                         </label>
-                        <label class="check-item group">
+                        <label class="check-item group py-1.5">
                             <input type="checkbox" class="hidden">
-                            <span class="custom-checkbox"></span>
+                            <span class="custom-checkbox group-hover:scale-110"></span>
                             <span class="text-xs font-extrabold text-amber-700">متوسط</span>
                         </label>
-                        <label class="check-item group">
+                        <label class="check-item group py-1.5">
                             <input type="checkbox" class="hidden">
-                            <span class="custom-checkbox"></span>
+                            <span class="custom-checkbox group-hover:scale-110"></span>
                             <span class="text-xs font-extrabold text-red-700">منخفض</span>
                         </label>
                     </div>
                 </div>
                 
-                <div class="overflow-hidden border border-slate-200 rounded-2xl">
-                    <table class="w-full text-center text-xs">
+                <div class="table-container border border-slate-200 rounded-2xl shadow-inner">
+                    <table class="w-full text-center text-xs min-w-[600px] md:min-w-0">
                         <thead class="bg-slate-800 text-white">
                             <tr>
                                 <th class="p-3 border-l border-slate-700">متوسط الدرجات</th>
                                 <th class="p-3 border-l border-slate-700">أعلى درجة</th>
                                 <th class="p-3 border-l border-slate-700">أقل درجة</th>
-                                <th class="p-3">عدد الطلاب ≤ 50%</th>
+                                <th class="p-3 uppercase tracking-tight">طلاب ≤ 50%</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white">
                             <tr>
-                                <td class="p-1 border-l border-slate-100"><input type="text" class="text-center w-full outline-none font-bold text-blue-700 p-2"></td>
-                                <td class="p-1 border-l border-slate-100"><input type="text" class="text-center w-full outline-none font-bold text-green-700 p-2"></td>
-                                <td class="p-1 border-l border-slate-100"><input type="text" class="text-center w-full outline-none font-bold text-red-600 p-2"></td>
-                                <td class="p-1"><input type="text" class="text-center w-full outline-none font-bold text-slate-800 p-2"></td>
+                                <td class="p-2 border-l border-slate-100"><input type="text" class="text-center w-full outline-none font-bold text-blue-700 p-2 text-base"></td>
+                                <td class="p-2 border-l border-slate-100"><input type="text" class="text-center w-full outline-none font-bold text-green-700 p-2 text-base"></td>
+                                <td class="p-2 border-l border-slate-100"><input type="text" class="text-center w-full outline-none font-bold text-red-600 p-2 text-base"></td>
+                                <td class="p-2"><input type="text" class="text-center w-full outline-none font-bold text-slate-800 p-2 text-base"></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                <p class="text-[9px] text-slate-400 mt-2 text-center no-print">مرر الجدول لليسار في حال عدم ظهور الخانات كاملة على الجوال</p>
             </div>
         </div>
 
+        <!-- FORCE PAGE BREAK FOR PRINT -->
         <div class="page-break"></div>
 
         <!-- PAGE 2 -->
-        <div class="page-2-wrapper mt-8 print:mt-0">
+        <div class="page-2-wrapper mt-8 print:mt-0 space-y-6">
             <!-- Skills Analysis -->
-            <div class="bg-white p-6 rounded-3xl shadow-xl border border-slate-100 section-card">
+            <div class="bg-white p-5 md:p-8 rounded-3xl shadow-xl border border-slate-100 section-card">
                 <h2 class="text-lg font-extrabold mb-5 text-indigo-900 flex items-center gap-3">
                     <span class="w-1.5 h-6 bg-indigo-500 rounded-full"></span>
                     تحليل المهارات النوعي
                 </h2>
-                <div class="grid grid-cols-2 border-2 border-slate-200 rounded-2xl overflow-hidden skills-box shadow-inner">
-                    <div class="flex flex-col border-l-2 border-slate-200 bg-green-50/10">
-                        <div class="bg-green-600 p-3 text-center text-xs font-extrabold text-white">نقاط القوة</div>
-                        <div class="p-2 bg-red-50 border-b border-red-100">
+                <div class="grid grid-cols-1 md:grid-cols-2 border-2 border-slate-200 rounded-2xl md:rounded-3xl overflow-hidden skills-box">
+                    <!-- Strengths -->
+                    <div class="flex flex-col border-b-2 md:border-b-0 md:border-l-2 border-slate-200 bg-green-50/10">
+                        <div class="bg-green-600 p-3 text-center text-xs font-extrabold text-white uppercase tracking-wider">نقاط القوة (مهارات متمكنة)</div>
+                        <div class="p-1 bg-red-50 border-b border-red-100">
                              <p class="text-[10px] text-red-600 font-bold text-center italic">((يكتب المعلم المهارات جميعها))</p>
                         </div>
-                        <textarea class="flex-grow p-4 text-sm font-semibold text-slate-700 resize-none outline-none leading-relaxed bg-transparent" placeholder="أظهر الطلاب تقدماً في المهارات التالية: ">أظهر الطلاب تقدماً في المهارات التالية: 
+                        <textarea class="flex-grow p-4 text-sm font-semibold text-slate-700 resize-none outline-none leading-relaxed bg-transparent min-h-[150px]" placeholder="أظهر الطلاب تقدماً في المهارات التالية: ">أظهر الطلاب تقدماً في المهارات التالية: 
 1. 
 2. 
 3. 
@@ -259,12 +272,13 @@
 5. 
 6. </textarea>
                     </div>
+                    <!-- Weaknesses -->
                     <div class="flex flex-col bg-red-50/10">
-                        <div class="bg-red-600 p-3 text-center text-xs font-extrabold text-white">نقاط تحتاج تحسين</div>
-                        <div class="p-2 bg-red-50 border-b border-red-100">
+                        <div class="bg-red-600 p-3 text-center text-xs font-extrabold text-white uppercase tracking-wider">نقاط تحتاج تحسين (فجوات)</div>
+                        <div class="p-1 bg-red-50 border-b border-red-100">
                              <p class="text-[10px] text-red-600 font-bold text-center italic">((يكتب المعلم المهارات جميعها))</p>
                         </div>
-                        <textarea class="flex-grow p-4 text-sm font-semibold text-slate-700 resize-none outline-none leading-relaxed bg-transparent" placeholder="أظهر الطلاب انخفاضاً في المهارات التالية: ">أظهر الطلاب انخفاضاً في المهارات التالية: 
+                        <textarea class="flex-grow p-4 text-sm font-semibold text-slate-700 resize-none outline-none leading-relaxed bg-transparent min-h-[150px]" placeholder="أظهر الطلاب انخفاضاً في المهارات التالية: ">أظهر الطلاب انخفاضاً في المهارات التالية: 
 1. 
 2. 
 3. 
@@ -275,45 +289,46 @@
                 </div>
             </div>
 
-            <!-- Teacher Needs -->
-            <div class="bg-white p-6 rounded-3xl shadow-xl border border-slate-100 section-card">
+            <!-- Needs -->
+            <div class="bg-white p-5 md:p-8 rounded-3xl shadow-xl border border-slate-100 section-card">
                 <h2 class="text-lg font-extrabold mb-4 text-indigo-900 flex items-center gap-3">
                     <span class="w-1.5 h-6 bg-amber-500 rounded-full"></span>
-                    رابعًا: احتياجات المعلم لمساندته
+                    رابعًا: احتياجات المعلم والدعم المطلوب
                 </h2>
-                <textarea class="w-full h-24 p-4 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold outline-none focus:ring-1 focus:ring-indigo-300 resize-none" placeholder="اكتب الاحتياجات والمقترحات هنا..."></textarea>
+                <textarea class="w-full h-24 md:h-32 p-4 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold outline-none focus:ring-2 focus:ring-indigo-200 resize-none" placeholder="اكتب هنا المقترحات أو الموارد المطلوبة لتحسين الأداء..."></textarea>
             </div>
 
-            <!-- Signatures Section -->
-            <div class="bg-white p-6 rounded-3xl border-2 border-indigo-50 section-card">
-                <div class="grid grid-cols-3 gap-6">
-                    <div class="text-center">
-                        <div class="bg-indigo-900 text-white py-1.5 rounded-xl text-[10px] font-bold mb-3 shadow-sm">اسم المعلم</div>
-                        <input type="text" placeholder="................" class="text-center w-full text-indigo-900 font-extrabold border-none text-xs bg-indigo-50/30 rounded-lg p-1.5">
+            <!-- Signatures -->
+            <div class="bg-white p-6 rounded-3xl border-2 border-indigo-50 section-card shadow-sm">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 signatures-grid">
+                    <div class="text-center space-y-3">
+                        <div class="bg-indigo-900 text-white py-1.5 rounded-xl text-[10px] font-bold shadow-sm">اسم المعلم</div>
+                        <input type="text" placeholder="الاسم الكريم..." class="text-center w-full text-indigo-900 font-extrabold border-none text-xs bg-indigo-50/30 rounded-lg p-2">
                     </div>
-                    <div class="text-center">
-                        <div class="bg-indigo-900 text-white py-1.5 rounded-xl text-[10px] font-bold mb-3 shadow-sm">دعم التميز</div>
-                        <input type="text" placeholder="................" class="text-center w-full text-indigo-900 font-extrabold border-none text-xs bg-indigo-50/30 rounded-lg p-1.5">
+                    <div class="text-center space-y-3">
+                        <div class="bg-indigo-900 text-white py-1.5 rounded-xl text-[10px] font-bold shadow-sm text-xs">دعم التميز</div>
+                        <input type="text" placeholder="الاسم هنا..." class="text-center w-full text-indigo-900 font-extrabold border-none text-xs bg-indigo-50/30 rounded-lg p-2">
                     </div>
-                    <div class="text-center">
-                        <div class="bg-indigo-900 text-white py-1.5 rounded-xl text-[10px] font-bold mb-3 shadow-sm">مدير المدرسة</div>
-                        <input type="text" placeholder="................" class="text-center w-full text-indigo-900 font-extrabold border-none text-xs bg-indigo-50/30 rounded-lg p-1.5">
+                    <div class="text-center space-y-3">
+                        <div class="bg-indigo-900 text-white py-1.5 rounded-xl text-[10px] font-bold shadow-sm">مدير المدرسة</div>
+                        <input type="text" placeholder="الاسم هنا..." class="text-center w-full text-indigo-900 font-extrabold border-none text-xs bg-indigo-50/30 rounded-lg p-2">
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Action Buttons -->
-        <div class="flex justify-center gap-4 mt-8 no-print pb-10">
-            <button onclick="window.print()" class="bg-indigo-600 text-white px-10 py-3 rounded-2xl font-black text-sm hover:bg-indigo-700 flex items-center gap-2 shadow-xl transition-all transform hover:scale-105 active:scale-95">
+        <div class="flex justify-center gap-4 mt-10 no-print pb-12">
+            <button onclick="window.print()" class="bg-indigo-600 text-white px-8 py-3 rounded-2xl font-black text-sm hover:bg-indigo-700 flex items-center gap-2 shadow-xl transition-all transform active:scale-95">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" /></svg>
-                طباعة التقرير النهائي
+                طباعة التقرير النهائي (PDF)
             </button>
         </div>
     </main>
 
-    <footer class="mt-4 py-6 text-center text-slate-400 text-[10px] no-print border-t border-slate-100">
-        جميع الحقوق محفوظة © 1447هـ | تصميم وتطوير الأستاذ <a href="https://x.com/mohdasiri99" target="_blank" class="font-bold hover:text-blue-500 transition-colors">محمد علي عسيري</a>
+    <footer class="mt-4 py-8 text-center text-slate-400 text-[10px] no-print border-t border-slate-100 px-4">
+        <p class="mb-1">جميع الحقوق محفوظة © 1447هـ</p>
+        <p>تصميم وتطوير الأستاذ <a href="https://x.com/mohdasiri99" target="_blank" class="font-bold hover:text-blue-500 transition-colors">محمد علي عسيري</a></p>
     </footer>
 
 </body>
