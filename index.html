@@ -17,7 +17,7 @@
         body {
             font-family: 'Tajawal', sans-serif;
             background-color: #f8fafc;
-            color: #1e293b; /* Darker text for better contrast */
+            color: #1e293b;
         }
         
         .section-card {
@@ -33,15 +33,14 @@
             padding-right: 16px;
         }
         
-        /* Print Specific Optimizations - TARGETING READABILITY & FILLING PAGE */
         @media print {
             @page {
                 size: A4;
-                margin: 0.8cm; /* Balanced margins */
+                margin: 0.8cm;
             }
             body {
                 background-color: white;
-                font-size: 14pt; /* Significantly larger base font */
+                font-size: 13pt; /* Adjusted slightly to ensure fit */
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
@@ -55,49 +54,53 @@
             }
             .section-card {
                 box-shadow: none !important;
-                border: 2px solid #94a3b8; /* Thicker border for print clarity */
-                margin-bottom: 20px !important;
+                border: 2px solid #94a3b8;
+                margin-bottom: 15px !important; /* Reduced margin */
                 break-inside: avoid;
-                padding: 20px !important;
+                padding: 15px !important; /* Reduced padding */
             }
             .page-break {
                 page-break-before: always;
-                height: 1px;
+                height: 0;
                 display: block;
             }
             
-            /* Enhanced Inputs for Print */
             input, textarea {
                 border: 1px solid #cbd5e1 !important;
                 background: transparent !important;
                 resize: none;
-                padding: 8px !important;
-                font-size: 12pt !important; /* Larger input text */
-                line-height: 1.6;
+                padding: 6px !important;
+                font-size: 11pt !important;
+                line-height: 1.4;
                 font-weight: 500;
                 color: #000;
             }
             
-            /* Header Sizing */
-            h2 { font-size: 24pt !important; margin-bottom: 5px !important; }
-            h3 { font-size: 18pt !important; margin-bottom: 15px !important; }
+            h2 { font-size: 22pt !important; margin-bottom: 5px !important; }
+            h3 { font-size: 16pt !important; margin-bottom: 10px !important; }
             
-            /* Spacing adjustments to fill the page */
-            .gap-6 { gap: 20px !important; }
-            .mb-8 { margin-bottom: 25px !important; }
+            .gap-6 { gap: 15px !important; }
+            .mb-8 { margin-bottom: 15px !important; }
+            .p-8 { padding: 15px !important; }
             
-            /* Table Adjustments */
-            th { font-size: 13pt !important; padding: 10px !important; background-color: #f0fdfa !important; }
-            td { padding: 8px !important; }
+            th { font-size: 12pt !important; padding: 8px !important; background-color: #f0fdfa !important; }
+            td { padding: 6px !important; }
             
-            /* Force background colors */
             .print-bg-teal { background-color: #f0fdfa !important; }
             .print-bg-blue { background-color: #eff6ff !important; }
             .print-bg-purple { background-color: #faf5ff !important; }
             .print-bg-orange { background-color: #fff7ed !important; }
             .print-bg-header { 
-                background: #0f766e !important; /* Solid color for better print reliability than gradient */
+                background: #0f766e !important;
                 color: white !important; 
+            }
+            
+            /* Specific fix for the last page to keep signature with content */
+            .last-page-container {
+                display: flex;
+                flex-direction: column;
+                height: 95vh; /* Force fit within page height */
+                justify-content: space-between;
             }
             
             ::placeholder { color: transparent; }
@@ -125,13 +128,12 @@
 
     <div class="container mx-auto p-6 md:p-8 max-w-[21cm] md:max-w-5xl"> 
         
-        <!-- PAGE 1: CORE PLAN -->
+        <!-- PAGE 1 & 2 CONTENT (As per user preference) -->
         
         <!-- HEADER -->
         <header class="section-card p-8 mb-6 relative overflow-hidden">
             <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-teal-600 to-amber-500"></div>
             
-            <!-- Copyright -->
             <div class="absolute top-4 left-6 text-xs text-gray-500 font-bold tracking-wider">
                 © الكوتش / محمد علي عسيري 2025
             </div>
@@ -165,8 +167,6 @@
 
         <!-- Compass + SWOT -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            
-            <!-- Vision -->
             <section class="section-card p-6 flex flex-col h-full">
                 <h3 class="font-bold text-teal-900 text-xl mb-4 flex items-center section-title">
                     <i class="fas fa-compass ml-3 text-amber-500 text-2xl"></i> الرؤية والتركيز
@@ -183,7 +183,6 @@
                 </div>
             </section>
 
-            <!-- SWOT -->
             <section class="section-card p-6 flex flex-col h-full">
                 <h3 class="font-bold text-teal-900 text-xl mb-4 flex items-center section-title">
                     <i class="fas fa-chart-bar ml-3 text-amber-500 text-2xl"></i> تحليل الواقع (SWOT)
@@ -240,79 +239,83 @@
             </div>
         </section>
 
-        <!-- PAGE 2 START -->
+        <!-- PAGE 3 START: 70-20-10 + Signature -->
         <div class="page-break"></div>
+        
+        <!-- Wrap in a container to enforce single page in print -->
+        <div class="last-page-container">
 
-        <!-- 70-20-10 Model -->
-        <section class="section-card p-8 mb-8 mt-4 h-[24cm] flex flex-col"> <!-- Fixed height to fill A4 roughly -->
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b-2 border-gray-100 pb-4">
-                <div>
-                    <h3 class="font-bold text-teal-900 text-2xl flex items-center section-title border-none p-0">
-                        <i class="fas fa-chart-pie ml-3 text-amber-500 text-3xl"></i> نموذج 70-20-10
-                    </h3>
-                    <p class="text-gray-500 mt-2 text-sm">منهجية النمو المتوازن: توزيع مصادر التعلم لضمان أقصى فائدة مهنية.</p>
+            <!-- 70-20-10 Model -->
+            <section class="section-card p-6 mb-4 mt-2 flex flex-col"> <!-- Reduced margins and padding -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 border-b-2 border-gray-100 pb-2">
+                    <div>
+                        <h3 class="font-bold text-teal-900 text-xl flex items-center section-title border-none p-0">
+                            <i class="fas fa-chart-pie ml-3 text-amber-500 text-2xl"></i> نموذج 70-20-10
+                        </h3>
+                        <p class="text-gray-500 mt-1 text-xs">منهجية النمو المتوازن: توزيع مصادر التعلم لضمان أقصى فائدة مهنية.</p>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 flex-grow">
                 
-                <!-- 70% -->
-                <div class="bg-blue-50/60 print-bg-blue rounded-xl p-5 border-2 border-blue-100 flex flex-col h-full shadow-sm hover:shadow-md transition-shadow">
-                    <div class="flex items-center justify-between mb-4 pb-2 border-b border-blue-200">
-                        <span class="text-xl font-extrabold text-blue-800">70% ممارسة وخبرة</span>
-                        <div class="bg-white p-2 rounded-full shadow-sm">
-                            <i class="fas fa-laptop-code text-blue-500 text-xl"></i>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 flex-grow">
+                    
+                    <!-- 70% -->
+                    <div class="bg-blue-50/60 print-bg-blue rounded-xl p-4 border-2 border-blue-100 flex flex-col shadow-sm">
+                        <div class="flex items-center justify-between mb-2 pb-1 border-b border-blue-200">
+                            <span class="text-lg font-extrabold text-blue-800">70% ممارسة وخبرة</span>
+                            <div class="bg-white p-1 rounded-full shadow-sm">
+                                <i class="fas fa-laptop-code text-blue-500 text-lg"></i>
+                            </div>
                         </div>
+                        <p class="text-xs text-blue-600 mb-2 font-medium">التعلم من خلال المهام اليومية والمشاريع.</p>
+                        <textarea id="idp70" rows="8" class="w-full text-sm p-3 bg-white rounded-lg border border-blue-200 focus:ring-2 focus:ring-blue-400 outline-none resize-none shadow-inner leading-relaxed" placeholder="أمثلة:&#10;- قيادة فريق لمشروع مدرسي&#10;- تصميم درس تطبيقي باستخدام التقنية&#10;- حل مشكلة سلوكية لطلاب الصف..."></textarea>
                     </div>
-                    <p class="text-xs text-blue-600 mb-3 font-medium">التعلم من خلال المهام اليومية، المشاريع، حل المشكلات، والتطبيق العملي.</p>
-                    <textarea id="idp70" class="flex-grow w-full text-base p-4 bg-white rounded-lg border border-blue-200 focus:ring-2 focus:ring-blue-400 outline-none resize-none shadow-inner leading-relaxed" placeholder="أمثلة:&#10;- قيادة فريق لمشروع مدرسي&#10;- تصميم درس تطبيقي باستخدام التقنية&#10;- حل مشكلة سلوكية لطلاب الصف..."></textarea>
-                </div>
 
-                <!-- 20% -->
-                <div class="bg-purple-50/60 print-bg-purple rounded-xl p-5 border-2 border-purple-100 flex flex-col h-full shadow-sm hover:shadow-md transition-shadow">
-                    <div class="flex items-center justify-between mb-4 pb-2 border-b border-purple-200">
-                        <span class="text-xl font-extrabold text-purple-800">20% علاقات وتوجيه</span>
-                        <div class="bg-white p-2 rounded-full shadow-sm">
-                            <i class="fas fa-users text-purple-500 text-xl"></i>
+                    <!-- 20% -->
+                    <div class="bg-purple-50/60 print-bg-purple rounded-xl p-4 border-2 border-purple-100 flex flex-col shadow-sm">
+                        <div class="flex items-center justify-between mb-2 pb-1 border-b border-purple-200">
+                            <span class="text-lg font-extrabold text-purple-800">20% علاقات وتوجيه</span>
+                            <div class="bg-white p-1 rounded-full shadow-sm">
+                                <i class="fas fa-users text-purple-500 text-lg"></i>
+                            </div>
                         </div>
+                        <p class="text-xs text-purple-600 mb-2 font-medium">التعلم من الآخرين: التوجيه والزمالة.</p>
+                        <textarea id="idp20" rows="8" class="w-full text-sm p-3 bg-white rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400 outline-none resize-none shadow-inner leading-relaxed" placeholder="أمثلة:&#10;- جلسات كوتشينج شهرية&#10;- حضور حصة لزميل خبير&#10;- الانضمام لمجتمع تعلم مهني PLC..."></textarea>
                     </div>
-                    <p class="text-xs text-purple-600 mb-3 font-medium">التعلم من الآخرين: التوجيه (Coaching)، الزمالة، التغذية الراجعة.</p>
-                    <textarea id="idp20" class="flex-grow w-full text-base p-4 bg-white rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400 outline-none resize-none shadow-inner leading-relaxed" placeholder="أمثلة:&#10;- جلسات كوتشينج شهرية&#10;- حضور حصة لزميل خبير&#10;- الانضمام لمجتمع تعلم مهني PLC..."></textarea>
-                </div>
 
-                <!-- 10% -->
-                <div class="bg-orange-50/60 print-bg-orange rounded-xl p-5 border-2 border-orange-100 flex flex-col h-full shadow-sm hover:shadow-md transition-shadow">
-                    <div class="flex items-center justify-between mb-4 pb-2 border-b border-orange-200">
-                        <span class="text-xl font-extrabold text-orange-800">10% تدريب رسمي</span>
-                        <div class="bg-white p-2 rounded-full shadow-sm">
-                            <i class="fas fa-book-reader text-orange-500 text-xl"></i>
+                    <!-- 10% -->
+                    <div class="bg-orange-50/60 print-bg-orange rounded-xl p-4 border-2 border-orange-100 flex flex-col shadow-sm">
+                        <div class="flex items-center justify-between mb-2 pb-1 border-b border-orange-200">
+                            <span class="text-lg font-extrabold text-orange-800">10% تدريب رسمي</span>
+                            <div class="bg-white p-1 rounded-full shadow-sm">
+                                <i class="fas fa-book-reader text-orange-500 text-lg"></i>
+                            </div>
                         </div>
+                        <p class="text-xs text-orange-600 mb-2 font-medium">التعلم النظامي: الدورات وورش العمل.</p>
+                        <textarea id="idp10" rows="8" class="w-full text-sm p-3 bg-white rounded-lg border border-orange-200 focus:ring-2 focus:ring-orange-400 outline-none resize-none shadow-inner leading-relaxed" placeholder="أمثلة:&#10;- قراءة كتاب في طرق التدريس&#10;- دورة عبر منصة إثرائية&#10;- حضور مؤتمر التعليم..."></textarea>
                     </div>
-                    <p class="text-xs text-orange-600 mb-3 font-medium">التعلم النظامي: الدورات التدريبية، القراءات، ورش العمل، المؤتمرات.</p>
-                    <textarea id="idp10" class="flex-grow w-full text-base p-4 bg-white rounded-lg border border-orange-200 focus:ring-2 focus:ring-orange-400 outline-none resize-none shadow-inner leading-relaxed" placeholder="أمثلة:&#10;- قراءة كتاب في طرق التدريس&#10;- دورة عبر منصة إثرائية&#10;- حضور مؤتمر التعليم..."></textarea>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Signature Block -->
-        <section class="bg-teal-800 print-bg-header text-white p-8 rounded-2xl shadow-lg text-center mt-auto">
-            <div class="max-w-3xl mx-auto">
-                <i class="fas fa-handshake text-4xl text-teal-300 mb-4 opacity-80"></i>
-                <p class="text-lg md:text-xl text-teal-50 mb-10 font-light leading-relaxed">
-                    "أتعهد بالالتزام بتنفيذ هذه الخطة والعمل بجدية على تحقيق أهدافها، بما يسهم في رفع كفاءتي المهنية وتحسين مخرجات التعلم لدى طلابي."
-                </p>
-            </div>
-            <div class="flex flex-col md:flex-row justify-center gap-20 items-center">
-                <div class="text-center group w-64">
-                    <div class="h-12 w-full border-b-2 border-teal-400/60 mb-3 group-hover:border-white transition-colors"></div>
-                    <p class="text-sm font-bold text-teal-200 uppercase tracking-widest">توقيع المعلم</p>
+            <!-- Signature Block - Moved to be part of the last page flow -->
+            <section class="bg-teal-800 print-bg-header text-white p-6 rounded-xl shadow-lg text-center mt-2">
+                <div class="max-w-3xl mx-auto">
+                    <p class="text-base md:text-lg text-teal-50 mb-6 font-light leading-relaxed">
+                        "أتعهد بالالتزام بتنفيذ هذه الخطة والعمل بجدية على تحقيق أهدافها، بما يسهم في رفع كفاءتي المهنية وتحسين مخرجات التعلم لدى طلابي."
+                    </p>
                 </div>
-                <div class="text-center group w-64">
-                    <div class="h-12 w-full border-b-2 border-teal-400/60 mb-3 group-hover:border-white transition-colors"></div>
-                    <p class="text-sm font-bold text-teal-200 uppercase tracking-widest">اعتماد الكوتش التعليمي</p>
+                <div class="flex flex-col md:flex-row justify-center gap-16 items-center">
+                    <div class="text-center group w-56">
+                        <div class="h-10 w-full border-b-2 border-teal-400/60 mb-2 group-hover:border-white transition-colors"></div>
+                        <p class="text-xs font-bold text-teal-200 uppercase tracking-widest">توقيع المعلم</p>
+                    </div>
+                    <div class="text-center group w-56">
+                        <div class="h-10 w-full border-b-2 border-teal-400/60 mb-2 group-hover:border-white transition-colors"></div>
+                        <p class="text-xs font-bold text-teal-200 uppercase tracking-widest">اعتماد الكوتش التعليمي</p>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+        </div> <!-- End of last-page-container -->
 
     </div>
 
@@ -322,7 +325,7 @@
     </div>
 
     <script>
-        const STORAGE_KEY = 'teacherPathwayData_v4'; // Incremented version
+        const STORAGE_KEY = 'teacherPathwayData_v4';
         
         const fieldIds = [
             'schoolYear', 'teacherName', 'schoolName', 'mentorName',
@@ -346,7 +349,6 @@
         }
 
         function loadData() {
-            // Fallback chain for backward compatibility
             let savedData = localStorage.getItem(STORAGE_KEY);
             if (!savedData) savedData = localStorage.getItem('teacherPathwayData_v3');
             if (!savedData) savedData = localStorage.getItem('teacherPathwayData_v2');
