@@ -1,375 +1,71 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مسار المعلم الجديد - خطة التطوير المهني IDP</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #0f766e; /* Teal 700 */
-            --secondary-color: #115e59; /* Teal 800 */
-            --accent-color: #d97706; /* Amber 600 */
-            --bg-soft: #f0fdfa;
-        }
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background-color: #f8fafc;
-            color: #1e293b;
-        }
-        
-        .section-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            border: 1px solid #cbd5e1;
-            transition: all 0.3s ease;
-        }
-        .section-title {
-            color: var(--secondary-color);
-            border-right: 5px solid var(--accent-color);
-            padding-right: 16px;
-        }
-        
-        @media print {
-            @page {
-                size: A4;
-                margin: 0.8cm;
-            }
-            body {
-                background-color: white;
-                font-size: 13pt; /* Adjusted slightly to ensure fit */
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-            .no-print {
-                display: none !important;
-            }
-            .container {
-                max-width: 100% !important;
-                padding: 0 !important;
-                margin: 0 !important;
-            }
-            .section-card {
-                box-shadow: none !important;
-                border: 2px solid #94a3b8;
-                margin-bottom: 15px !important; /* Reduced margin */
-                break-inside: avoid;
-                padding: 15px !important; /* Reduced padding */
-            }
-            .page-break {
-                page-break-before: always;
-                height: 0;
-                display: block;
-            }
-            
-            input, textarea {
-                border: 1px solid #cbd5e1 !important;
-                background: transparent !important;
-                resize: none;
-                padding: 6px !important;
-                font-size: 11pt !important;
-                line-height: 1.4;
-                font-weight: 500;
-                color: #000;
-            }
-            
-            h2 { font-size: 22pt !important; margin-bottom: 5px !important; }
-            h3 { font-size: 16pt !important; margin-bottom: 10px !important; }
-            
-            .gap-6 { gap: 15px !important; }
-            .mb-8 { margin-bottom: 15px !important; }
-            .p-8 { padding: 15px !important; }
-            
-            th { font-size: 12pt !important; padding: 8px !important; background-color: #f0fdfa !important; }
-            td { padding: 6px !important; }
-            
-            .print-bg-teal { background-color: #f0fdfa !important; }
-            .print-bg-blue { background-color: #eff6ff !important; }
-            .print-bg-purple { background-color: #faf5ff !important; }
-            .print-bg-orange { background-color: #fff7ed !important; }
-            .print-bg-header { 
-                background: #0f766e !important;
-                color: white !important; 
-            }
-            
-            /* Specific fix for the last page to keep signature with content */
-            .last-page-container {
-                display: flex;
-                flex-direction: column;
-                height: 95vh; /* Force fit within page height */
-                justify-content: space-between;
-            }
-            
-            ::placeholder { color: transparent; }
-        }
-    </style>
-</head>
-<body class="antialiased text-gray-800">
+\documentclass[11pt, a4paper, sans]{moderncv}
 
-    <!-- Navbar / Actions -->
-    <nav class="bg-gradient-to-r from-teal-800 to-teal-700 text-white p-4 shadow-md sticky top-0 z-50 no-print">
-        <div class="container mx-auto flex justify-between items-center max-w-6xl">
-            <h1 class="text-xl font-bold flex items-center gap-2">
-                <i class="fas fa-id-card-alt"></i> IDP - مسار المعلم
-            </h1>
-            <div class="space-x-3 space-x-reverse text-base">
-                <button onclick="saveData()" class="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-4 py-2 rounded transition shadow backdrop-blur-sm">
-                    <i class="fas fa-save ml-1"></i> حفظ البيانات
-                </button>
-                <button onclick="window.print()" class="bg-white text-teal-800 hover:bg-gray-50 px-4 py-2 rounded transition shadow font-bold">
-                    <i class="fas fa-print ml-1"></i> طباعة النموذج
-                </button>
-            </div>
-        </div>
-    </nav>
+% --- إعدادات التصميم الأساسية ---
+\moderncvstyle{classic} % نمط كلاسيكي أنيق
+\moderncvcolor{burgundy} % لون احترافي
+\usepackage[scale=0.75]{geometry}
 
-    <div class="container mx-auto p-6 md:p-8 max-w-[21cm] md:max-w-5xl"> 
-        
-        <!-- PAGE 1 & 2 CONTENT (As per user preference) -->
-        
-        <!-- HEADER -->
-        <header class="section-card p-8 mb-6 relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-teal-600 to-amber-500"></div>
-            
-            <div class="absolute top-4 left-6 text-xs text-gray-500 font-bold tracking-wider">
-                © الكوتش / محمد علي عسيري 2025
-            </div>
+% --- إعدادات اللغة والخطوط (إصلاح المشكلة) ---
+% استخدام layout=lists يساعد في ضبط القوائم مع الاتجاه من اليمين لليسار
+\usepackage[bidi=basic, layout=lists]{babel}
 
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4 mt-2">
-                <div>
-                    <h2 class="text-3xl font-extrabold text-teal-900 leading-tight">خطة التطوير المهني (IDP)</h2>
-                    <p class="text-lg text-teal-600 font-medium mt-1">مسار المعلم الجديد - نموذج التميز</p>
-                </div>
-                <div class="text-left w-full md:w-auto">
-                    <label class="text-sm font-bold text-gray-500 block mb-1">العام الدراسي</label>
-                    <input type="text" id="schoolYear" value="1446 - 1447 هـ" class="text-xl font-bold text-teal-800 border-b-2 border-gray-300 focus:border-teal-600 focus:outline-none w-40 text-center bg-transparent py-1">
-                </div>
-            </div>
+% تعريف اللغة العربية كأساسية، مع تعطيل الواصلة (Hyphenation) لتجنب أخطاء LuaTeX
+\babelprovide[import, main, mapdigits, hyphenation=false]{arabic}
+\babelprovide[import]{english}
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-slate-50 p-5 rounded-xl border border-slate-200">
-                <div>
-                    <label class="block text-xs font-bold text-gray-500 mb-2 uppercase tracking-wide">اسم المعلم/ـة</label>
-                    <input type="text" id="teacherName" class="w-full text-lg font-bold bg-white border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-teal-500 outline-none shadow-sm text-gray-800">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-500 mb-2 uppercase tracking-wide">المدرسة</label>
-                    <input type="text" id="schoolName" class="w-full text-lg font-bold bg-white border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-teal-500 outline-none shadow-sm text-gray-800">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-500 mb-2 uppercase tracking-wide">الكوتش التعليمي</label>
-                    <input type="text" id="mentorName" class="w-full text-lg font-bold bg-white border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-teal-500 outline-none shadow-sm text-gray-800">
-                </div>
-            </div>
-        </header>
+\usepackage{fontspec}
 
-        <!-- Compass + SWOT -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            <section class="section-card p-6 flex flex-col h-full">
-                <h3 class="font-bold text-teal-900 text-xl mb-4 flex items-center section-title">
-                    <i class="fas fa-compass ml-3 text-amber-500 text-2xl"></i> الرؤية والتركيز
-                </h3>
-                <div class="space-y-4 flex-grow">
-                    <div>
-                        <label class="text-sm font-bold text-teal-700 mb-1 block">رؤيتي التعليمية (Why?)</label>
-                        <textarea id="vision" rows="4" class="w-full text-base p-3 bg-teal-50/30 rounded-lg border border-teal-100 focus:bg-white focus:ring-2 focus:ring-teal-500 outline-none resize-none shadow-inner" placeholder="اكتب رسالتك والقيم الجوهرية التي تؤمن بها..."></textarea>
-                    </div>
-                    <div>
-                        <label class="text-sm font-bold text-teal-700 mb-1 block">التركيز هذا العام (Focus)</label>
-                        <textarea id="focus" rows="4" class="w-full text-base p-3 bg-teal-50/30 rounded-lg border border-teal-100 focus:bg-white focus:ring-2 focus:ring-teal-500 outline-none resize-none shadow-inner" placeholder="ما هي المهارة رقم 1 التي تريد إتقانها؟"></textarea>
-                    </div>
-                </div>
-            </section>
+% moderncv يعتمد على الخطوط غير المذيلة (Sans Serif) بشكل أساسي
+% لذا نقوم بتعيين الخط العربي كخط أساسي للـ sf
+\babelfont{sf}{Noto Sans Arabic}
+\babelfont[english]{sf}{Noto Sans}
 
-            <section class="section-card p-6 flex flex-col h-full">
-                <h3 class="font-bold text-teal-900 text-xl mb-4 flex items-center section-title">
-                    <i class="fas fa-chart-bar ml-3 text-amber-500 text-2xl"></i> تحليل الواقع (SWOT)
-                </h3>
-                <div class="space-y-4 flex-grow">
-                    <div>
-                        <label class="text-sm font-bold text-green-700 mb-1 block">نقاط القوة (Strengths)</label>
-                        <textarea id="strengths" rows="4" class="w-full text-base p-3 bg-green-50/40 rounded-lg border border-green-100 focus:bg-white focus:ring-2 focus:ring-green-500 outline-none resize-none shadow-inner" placeholder="ما الذي تميزت به في أدائك السابق؟"></textarea>
-                    </div>
-                    <div>
-                        <label class="text-sm font-bold text-red-700 mb-1 block">فرص التحسين (Areas of Growth)</label>
-                        <textarea id="weaknesses" rows="4" class="w-full text-base p-3 bg-red-50/40 rounded-lg border border-red-100 focus:bg-white focus:ring-2 focus:ring-red-500 outline-none resize-none shadow-inner" placeholder="ما الجوانب التي تحتاج إلى دعم وتطوير؟"></textarea>
-                    </div>
-                </div>
-            </section>
-        </div>
+% تعيين خطوط الـ rm (المذيلة) احتياطياً
+\babelfont{rm}{Noto Sans Arabic}
+\babelfont[english]{rm}{Noto Sans}
 
-        <!-- Action Plan -->
-        <section class="section-card p-6 mb-8">
-            <h3 class="font-bold text-teal-900 text-xl mb-5 flex items-center section-title">
-                <i class="fas fa-tasks ml-3 text-amber-500 text-2xl"></i> خطة العمل (SMART Goals)
-            </h3>
-            <div class="overflow-hidden rounded-xl border border-gray-300 shadow-sm">
-                <table class="w-full text-sm md:text-base">
-                    <thead>
-                        <tr class="bg-teal-50 text-teal-900 border-b-2 border-teal-200">
-                            <th class="p-4 text-right w-[30%] font-bold">الهدف الذكي</th>
-                            <th class="p-4 text-right w-[30%] font-bold">إجراءات التنفيذ</th>
-                            <th class="p-4 text-right w-[15%] font-bold">التوقيت</th>
-                            <th class="p-4 text-right w-[25%] font-bold">الشواهد ومؤشرات النجاح</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200 bg-white">
-                        <tr>
-                            <td class="p-2"><textarea id="goal1" rows="3" class="w-full p-2 bg-transparent focus:bg-yellow-50 outline-none resize-none rounded transition-colors" placeholder="هدف محدد وقابل للقياس..."></textarea></td>
-                            <td class="p-2"><textarea id="action1" rows="3" class="w-full p-2 bg-transparent focus:bg-yellow-50 outline-none resize-none rounded transition-colors" placeholder="ورش عمل، قراءات، تطبيق..."></textarea></td>
-                            <td class="p-2"><input type="text" id="time1" class="w-full p-2 bg-transparent focus:bg-yellow-50 outline-none rounded transition-colors" placeholder="نهاية الفصل..."></td>
-                            <td class="p-2"><textarea id="evidence1" rows="3" class="w-full p-2 bg-transparent focus:bg-yellow-50 outline-none resize-none rounded transition-colors" placeholder="تقرير، صورة، شهادة..."></textarea></td>
-                        </tr>
-                        <tr>
-                            <td class="p-2"><textarea id="goal2" rows="3" class="w-full p-2 bg-transparent focus:bg-yellow-50 outline-none resize-none rounded transition-colors" placeholder="..."></textarea></td>
-                            <td class="p-2"><textarea id="action2" rows="3" class="w-full p-2 bg-transparent focus:bg-yellow-50 outline-none resize-none rounded transition-colors" placeholder="..."></textarea></td>
-                            <td class="p-2"><input type="text" id="time2" class="w-full p-2 bg-transparent focus:bg-yellow-50 outline-none rounded transition-colors" placeholder="..."></td>
-                            <td class="p-2"><textarea id="evidence2" rows="3" class="w-full p-2 bg-transparent focus:bg-yellow-50 outline-none resize-none rounded transition-colors" placeholder="..."></textarea></td>
-                        </tr>
-                        <tr>
-                            <td class="p-2"><textarea id="goal3" rows="3" class="w-full p-2 bg-transparent focus:bg-yellow-50 outline-none resize-none rounded transition-colors" placeholder="..."></textarea></td>
-                            <td class="p-2"><textarea id="action3" rows="3" class="w-full p-2 bg-transparent focus:bg-yellow-50 outline-none resize-none rounded transition-colors" placeholder="..."></textarea></td>
-                            <td class="p-2"><input type="text" id="time3" class="w-full p-2 bg-transparent focus:bg-yellow-50 outline-none rounded transition-colors" placeholder="..."></td>
-                            <td class="p-2"><textarea id="evidence3" rows="3" class="w-full p-2 bg-transparent focus:bg-yellow-50 outline-none resize-none rounded transition-colors" placeholder="..."></textarea></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+% --- البيانات الشخصية ---
+\name{الاسم}{الثلاثي}
+\title{المسمى الوظيفي / التخصص}
+\address{اسم الحي، المدينة، الدولة}{الرمز البريدي (اختياري)}
+\phone[mobile]{+966 5x xxx xxxx}
+\email{email@example.com}
+% \photo[64pt][0.4pt]{picture}
 
-        <!-- PAGE 3 START: 70-20-10 + Signature -->
-        <div class="page-break"></div>
-        
-        <!-- Wrap in a container to enforce single page in print -->
-        <div class="last-page-container">
+\begin{document}
+% --- بناء المستند ---
+\makecvtitle
 
-            <!-- 70-20-10 Model -->
-            <section class="section-card p-6 mb-4 mt-2 flex flex-col"> <!-- Reduced margins and padding -->
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 border-b-2 border-gray-100 pb-2">
-                    <div>
-                        <h3 class="font-bold text-teal-900 text-xl flex items-center section-title border-none p-0">
-                            <i class="fas fa-chart-pie ml-3 text-amber-500 text-2xl"></i> نموذج 70-20-10
-                        </h3>
-                        <p class="text-gray-500 mt-1 text-xs">منهجية النمو المتوازن: توزيع مصادر التعلم لضمان أقصى فائدة مهنية.</p>
-                    </div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 flex-grow">
-                    
-                    <!-- 70% -->
-                    <div class="bg-blue-50/60 print-bg-blue rounded-xl p-4 border-2 border-blue-100 flex flex-col shadow-sm">
-                        <div class="flex items-center justify-between mb-2 pb-1 border-b border-blue-200">
-                            <span class="text-lg font-extrabold text-blue-800">70% ممارسة وخبرة</span>
-                            <div class="bg-white p-1 rounded-full shadow-sm">
-                                <i class="fas fa-laptop-code text-blue-500 text-lg"></i>
-                            </div>
-                        </div>
-                        <p class="text-xs text-blue-600 mb-2 font-medium">التعلم من خلال المهام اليومية والمشاريع.</p>
-                        <textarea id="idp70" rows="8" class="w-full text-sm p-3 bg-white rounded-lg border border-blue-200 focus:ring-2 focus:ring-blue-400 outline-none resize-none shadow-inner leading-relaxed" placeholder="أمثلة:&#10;- قيادة فريق لمشروع مدرسي&#10;- تصميم درس تطبيقي باستخدام التقنية&#10;- حل مشكلة سلوكية لطلاب الصف..."></textarea>
-                    </div>
+\section{نبذة مهنية}
+\cvitem{}{مصمم ومحترف يمتلك خبرة واسعة في مجال [مجالك هنا]. أركز دائماً على التفاصيل الدقيقة وجودة المخرجات النهائية، مع الالتزام التام بمعايير الطباعة والتصميم الأكاديمي والمهني.}
 
-                    <!-- 20% -->
-                    <div class="bg-purple-50/60 print-bg-purple rounded-xl p-4 border-2 border-purple-100 flex flex-col shadow-sm">
-                        <div class="flex items-center justify-between mb-2 pb-1 border-b border-purple-200">
-                            <span class="text-lg font-extrabold text-purple-800">20% علاقات وتوجيه</span>
-                            <div class="bg-white p-1 rounded-full shadow-sm">
-                                <i class="fas fa-users text-purple-500 text-lg"></i>
-                            </div>
-                        </div>
-                        <p class="text-xs text-purple-600 mb-2 font-medium">التعلم من الآخرين: التوجيه والزمالة.</p>
-                        <textarea id="idp20" rows="8" class="w-full text-sm p-3 bg-white rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400 outline-none resize-none shadow-inner leading-relaxed" placeholder="أمثلة:&#10;- جلسات كوتشينج شهرية&#10;- حضور حصة لزميل خبير&#10;- الانضمام لمجتمع تعلم مهني PLC..."></textarea>
-                    </div>
+\section{الخبرات العملية}
+\cventry{2020--الآن}{مدير مشاريع أول}{شركة التقنية الحديثة}{الرياض}{}{
+\begin{itemize}
+    \item إدارة فريق مكون من 10 أشخاص لتنفيذ مشاريع التصميم.
+    \item ضمان جودة المخرجات الطباعية والرقمية بنسبة 100\%.
+    \item تحسين سير العمل لزيادة الإنتاجية وتقليل الأخطاء.
+\end{itemize}}
 
-                    <!-- 10% -->
-                    <div class="bg-orange-50/60 print-bg-orange rounded-xl p-4 border-2 border-orange-100 flex flex-col shadow-sm">
-                        <div class="flex items-center justify-between mb-2 pb-1 border-b border-orange-200">
-                            <span class="text-lg font-extrabold text-orange-800">10% تدريب رسمي</span>
-                            <div class="bg-white p-1 rounded-full shadow-sm">
-                                <i class="fas fa-book-reader text-orange-500 text-lg"></i>
-                            </div>
-                        </div>
-                        <p class="text-xs text-orange-600 mb-2 font-medium">التعلم النظامي: الدورات وورش العمل.</p>
-                        <textarea id="idp10" rows="8" class="w-full text-sm p-3 bg-white rounded-lg border border-orange-200 focus:ring-2 focus:ring-orange-400 outline-none resize-none shadow-inner leading-relaxed" placeholder="أمثلة:&#10;- قراءة كتاب في طرق التدريس&#10;- دورة عبر منصة إثرائية&#10;- حضور مؤتمر التعليم..."></textarea>
-                    </div>
-                </div>
-            </section>
+\cventry{2017--2020}{مسؤول جودة}{مؤسسة الإبداع}{جدة}{}{
+\begin{itemize}
+    \item مراجعة كافة التصاميم قبل إرسالها للمطبعة.
+    \item التأكد من دقة الألوان (CMYK) والمقاسات.
+\end{itemize}}
 
-            <!-- Signature Block - Moved to be part of the last page flow -->
-            <section class="bg-teal-800 print-bg-header text-white p-6 rounded-xl shadow-lg text-center mt-2">
-                <div class="max-w-3xl mx-auto">
-                    <p class="text-base md:text-lg text-teal-50 mb-6 font-light leading-relaxed">
-                        "أتعهد بالالتزام بتنفيذ هذه الخطة والعمل بجدية على تحقيق أهدافها، بما يسهم في رفع كفاءتي المهنية وتحسين مخرجات التعلم لدى طلابي."
-                    </p>
-                </div>
-                <div class="flex flex-col md:flex-row justify-center gap-16 items-center">
-                    <div class="text-center group w-56">
-                        <div class="h-10 w-full border-b-2 border-teal-400/60 mb-2 group-hover:border-white transition-colors"></div>
-                        <p class="text-xs font-bold text-teal-200 uppercase tracking-widest">توقيع المعلم</p>
-                    </div>
-                    <div class="text-center group w-56">
-                        <div class="h-10 w-full border-b-2 border-teal-400/60 mb-2 group-hover:border-white transition-colors"></div>
-                        <p class="text-xs font-bold text-teal-200 uppercase tracking-widest">اعتماد الكوتش التعليمي</p>
-                    </div>
-                </div>
-            </section>
+\section{التعليم}
+\cventry{2013--2017}{بكالوريوس في التصميم الجرافيكي}{جامعة الملك سعود}{الرياض}{معدل 4.5/5}{مشروع التخرج ركز على تقنيات الطباعة الحديثة.}
 
-        </div> <!-- End of last-page-container -->
+\section{المهارات التقنية}
+\cvdoubleitem{برامج التصميم}{Photoshop, Illustrator, InDesign}{أنظمة التشغيل}{Windows, Mac OS}
+\cvdoubleitem{لغات البرمجة}{LaTeX, HTML, CSS}{أدوات مكتبية}{Microsoft Office Suite}
 
-    </div>
+\section{اللغات}
+\cvitemwithcomment{العربية}{اللغة الأم}{فصاحة عالية وكتابة أكاديمية}
+\cvitemwithcomment{النجيزية}{مستوى متقدم}{تحدث وكتابة}
 
-    <!-- Notification -->
-    <div id="notification" class="fixed bottom-6 left-6 bg-gray-900 text-white px-8 py-4 rounded-xl shadow-2xl transform translate-y-32 opacity-0 transition-all duration-500 z-50 text-base font-bold flex items-center gap-3 border-r-4 border-teal-500">
-        <i class="fas fa-check-circle text-teal-400 text-xl"></i> تم حفظ الخطة بنجاح
-    </div>
+\section{معلومات إضافية}
+\cvlistitem{حاصل على جائزة التميز في التصميم لعام 2021.}
+\cvlistitem{عضو في جمعية المصممين المحترفين.}
 
-    <script>
-        const STORAGE_KEY = 'teacherPathwayData_v4';
-        
-        const fieldIds = [
-            'schoolYear', 'teacherName', 'schoolName', 'mentorName',
-            'vision', 'focus', 'strengths', 'weaknesses',
-            'goal1', 'action1', 'time1', 'evidence1',
-            'goal2', 'action2', 'time2', 'evidence2',
-            'goal3', 'action3', 'time3', 'evidence3',
-            'idp70', 'idp20', 'idp10'
-        ];
-
-        window.addEventListener('DOMContentLoaded', loadData);
-
-        function saveData() {
-            const data = {};
-            fieldIds.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) data[id] = el.value;
-            });
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-            showNotification();
-        }
-
-        function loadData() {
-            let savedData = localStorage.getItem(STORAGE_KEY);
-            if (!savedData) savedData = localStorage.getItem('teacherPathwayData_v3');
-            if (!savedData) savedData = localStorage.getItem('teacherPathwayData_v2');
-            if (!savedData) savedData = localStorage.getItem('teacherPathwayData');
-
-            if (savedData) {
-                const data = JSON.parse(savedData);
-                fieldIds.forEach(id => {
-                    const el = document.getElementById(id);
-                    if (el && data[id]) el.value = data[id];
-                });
-            }
-        }
-
-        function showNotification() {
-            const notif = document.getElementById('notification');
-            notif.classList.remove('translate-y-32', 'opacity-0');
-            setTimeout(() => {
-                notif.classList.add('translate-y-32', 'opacity-0');
-            }, 3000);
-        }
-    </script>
-</body>
-</html>
+\end{document}
