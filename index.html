@@ -1,71 +1,270 @@
-\documentclass[11pt, a4paper, sans]{moderncv}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تقرير نواتج التعلم 1447 - الأستاذ محمد علي عسيري</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f1f5f9;
+        }
+        .report-input {
+            border: 1px solid #e2e8f0;
+            padding: 4px 8px;
+            border-radius: 6px;
+            width: 100%;
+            background: transparent;
+        }
+        .report-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background: #fff;
+        }
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white; }
+            .print-border { border: 1px solid #ddd !important; }
+            .container { max-width: 100% !important; width: 100% !important; margin: 0 !important; padding: 0 !important; }
+            header { background: #1e3a8a !important; color: white !important; -webkit-print-color-adjust: exact; }
+            .bg-indigo-900 { background: #1e1b4b !important; -webkit-print-color-adjust: exact; }
+            .section-card { box-shadow: none !important; border: 1px solid #e2e8f0 !important; }
+        }
+        /* Custom Checkbox Style */
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .check-item:hover { background: #f8fafc; }
+        .custom-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #3b82f6;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        input[type="checkbox"]:checked + .custom-checkbox {
+            background-color: #3b82f6;
+        }
+        input[type="checkbox"]:checked + .custom-checkbox::after {
+            content: "✓";
+            color: white;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body class="text-gray-800 pb-20">
 
-% --- إعدادات التصميم الأساسية ---
-\moderncvstyle{classic} % نمط كلاسيكي أنيق
-\moderncvcolor{burgundy} % لون احترافي
-\usepackage[scale=0.75]{geometry}
+    <!-- Header Section -->
+    <header class="bg-gradient-to-r from-blue-900 to-indigo-800 text-white shadow-lg no-print">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <h1 class="text-2xl md:text-3xl font-bold mb-1">تقرير وصفي لتحليل اختبارات تحسين نواتج التعلم</h1>
+            <p class="text-lg text-blue-100 font-light mb-4">(ضمن خطة مئة يوم) - لعام 1447هـ</p>
+            <div class="bg-white/10 inline-block px-6 py-2 rounded-full backdrop-blur-sm border border-white/20">
+                <span class="text-sm font-semibold">إعداد وتصميم الأستاذ محمد علي عسيري</span>
+            </div>
+        </div>
+    </header>
 
-% --- إعدادات اللغة والخطوط (إصلاح المشكلة) ---
-% استخدام layout=lists يساعد في ضبط القوائم مع الاتجاه من اليمين لليسار
-\usepackage[bidi=basic, layout=lists]{babel}
+    <main class="container mx-auto px-4 py-8 max-w-6xl">
+        
+        <!-- Section 1: Basic Information -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 mb-8 section-card">
+            <h2 class="text-xl font-bold mb-6 text-blue-800 border-r-4 border-blue-600 pr-4">أولاً: المعلومات الأساسية</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-600 mb-1">اسم المدرسة</label>
+                    <input type="text" placeholder="..................................." class="report-input">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-600 mb-1">المادة (القراءة - الرياضيات - العلوم)</label>
+                    <input type="text" placeholder="..................................." class="report-input">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-600 mb-1">الصف</label>
+                    <input type="text" placeholder="..................................." class="report-input">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-600 mb-1">عدد الطلاب</label>
+                    <input type="number" placeholder="0" class="report-input text-center">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-600 mb-1">تاريخ الاختبار</label>
+                    <input type="text" placeholder="-- / -- / 1447هـ" class="report-input text-center">
+                </div>
+            </div>
+        </div>
 
-% تعريف اللغة العربية كأساسية، مع تعطيل الواصلة (Hyphenation) لتجنب أخطاء LuaTeX
-\babelprovide[import, main, mapdigits, hyphenation=false]{arabic}
-\babelprovide[import]{english}
+        <!-- Section 2: Test Goal -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 mb-8 section-card">
+            <h2 class="text-xl font-bold mb-6 text-blue-800 border-r-4 border-blue-600 pr-4">ثانياً: هدف الاختبار</h2>
+            <div class="flex flex-wrap gap-8 justify-center">
+                <label class="flex items-center gap-3 cursor-pointer group">
+                    <input type="radio" name="goal" class="w-5 h-5 text-blue-600 focus:ring-blue-500">
+                    <span class="text-lg font-medium group-hover:text-blue-700">اختبار تشخيصي</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer group">
+                    <input type="radio" name="goal" class="w-5 h-5 text-blue-600 focus:ring-blue-500">
+                    <span class="text-lg font-medium group-hover:text-blue-700">قياس تكويني</span>
+                </label>
+            </div>
+        </div>
 
-\usepackage{fontspec}
+        <!-- Section 3: Test Description -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            
+            <!-- Column 1: General Descriptive Analysis -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 section-card">
+                <h2 class="text-xl font-bold mb-6 text-blue-800 border-r-4 border-indigo-600 pr-4">ثالثاً: وصف الاختبار (التحليل الوصفي العام)</h2>
+                
+                <div class="mb-8">
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        تشير النتائج إلى أن مستوى الطلبة بصورة عامة في أداء الاختبار:
+                    </p>
+                    <div class="flex gap-6 items-center flex-wrap">
+                        <label class="check-item">
+                            <input type="checkbox" class="hidden">
+                            <span class="custom-checkbox"></span>
+                            <span class="font-bold text-green-600">مرتفع</span>
+                        </label>
+                        <label class="check-item">
+                            <input type="checkbox" class="hidden">
+                            <span class="custom-checkbox"></span>
+                            <span class="font-bold text-amber-600">متوسط</span>
+                        </label>
+                        <label class="check-item">
+                            <input type="checkbox" class="hidden">
+                            <span class="custom-checkbox"></span>
+                            <span class="font-bold text-red-600">منخفض</span>
+                        </label>
+                    </div>
+                </div>
 
-% moderncv يعتمد على الخطوط غير المذيلة (Sans Serif) بشكل أساسي
-% لذا نقوم بتعيين الخط العربي كخط أساسي للـ sf
-\babelfont{sf}{Noto Sans Arabic}
-\babelfont[english]{sf}{Noto Sans}
+                <div class="overflow-hidden border border-gray-200 rounded-xl">
+                    <table class="w-full text-center">
+                        <thead class="bg-gray-50">
+                            <tr class="text-xs font-bold text-gray-500 uppercase tracking-wider">
+                                <th class="px-4 py-3 border-b border-l">متوسط الدرجات</th>
+                                <th class="px-4 py-3 border-b border-l">أعلى درجة</th>
+                                <th class="px-4 py-3 border-b border-l">أقل درجة</th>
+                                <th class="px-4 py-3 border-b">طلاب ≤ 50%</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-2 py-3 border-l"><input type="text" class="text-center w-full focus:bg-blue-50 outline-none"></td>
+                                <td class="px-2 py-3 border-l"><input type="text" class="text-center w-full focus:bg-blue-50 outline-none"></td>
+                                <td class="px-2 py-3 border-l"><input type="text" class="text-center w-full focus:bg-blue-50 outline-none"></td>
+                                <td class="px-2 py-3"><input type="text" class="text-center w-full focus:bg-blue-50 outline-none"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-% تعيين خطوط الـ rm (المذيلة) احتياطياً
-\babelfont{rm}{Noto Sans Arabic}
-\babelfont[english]{rm}{Noto Sans}
+            <!-- Column 2: Skill Analysis -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 section-card">
+                <h2 class="text-xl font-bold mb-6 text-blue-800 border-r-4 border-indigo-600 pr-4">تحليل المهارات</h2>
+                <div class="grid grid-cols-2 h-full min-h-[250px] border border-gray-200 rounded-xl overflow-hidden">
+                    <div class="flex flex-col">
+                        <div class="bg-green-50 p-3 text-center font-bold text-green-800 border-b border-l border-gray-200">نقاط القوة</div>
+                        <div class="flex-grow p-4 border-l border-gray-200">
+                            <textarea class="w-full h-full resize-none border-none focus:ring-0 text-sm leading-relaxed" placeholder="اكتب نقاط القوة هنا..."></textarea>
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="bg-red-50 p-3 text-center font-bold text-red-800 border-b border-gray-200">نقاط تحتاج تحسين</div>
+                        <div class="flex-grow p-4">
+                            <textarea class="w-full h-full resize-none border-none focus:ring-0 text-sm leading-relaxed" placeholder="اكتب المهارات المفقودة هنا..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-% --- البيانات الشخصية ---
-\name{الاسم}{الثلاثي}
-\title{المسمى الوظيفي / التخصص}
-\address{اسم الحي، المدينة، الدولة}{الرمز البريدي (اختياري)}
-\phone[mobile]{+966 5x xxx xxxx}
-\email{email@example.com}
-% \photo[64pt][0.4pt]{picture}
+        <!-- Section 4: Teacher Needs -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 mb-12 section-card">
+            <h2 class="text-xl font-bold mb-6 text-blue-800 border-r-4 border-blue-600 pr-4">رابعًا: احتياجات المعلم لمساندته في تحسين أداء طلبته</h2>
+            <div class="border border-gray-200 rounded-xl p-4 bg-gray-50/30">
+                <textarea 
+                    class="w-full min-h-[150px] bg-transparent border-none focus:ring-0 text-gray-700 leading-relaxed" 
+                    placeholder="يرجى كتابة الاحتياجات والمقترحات هنا (مثال: حقائب علاجية، دورات تدريبية، موارد تقنية، دعم فني...)"
+                ></textarea>
+                
+                <div class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 no-print">
+                    <label class="check-item bg-white border border-gray-100">
+                        <input type="checkbox" class="hidden">
+                        <span class="custom-checkbox"></span>
+                        <span class="text-sm">حقائب علاجية</span>
+                    </label>
+                    <label class="check-item bg-white border border-gray-100">
+                        <input type="checkbox" class="hidden">
+                        <span class="custom-checkbox"></span>
+                        <span class="text-sm">تدريب نوعي</span>
+                    </label>
+                    <label class="check-item bg-white border border-gray-100">
+                        <input type="checkbox" class="hidden">
+                        <span class="custom-checkbox"></span>
+                        <span class="text-sm">وسائل تعليمية</span>
+                    </label>
+                    <label class="check-item bg-white border border-gray-100">
+                        <input type="checkbox" class="hidden">
+                        <span class="custom-checkbox"></span>
+                        <span class="text-sm">دعم إداري</span>
+                    </label>
+                </div>
+            </div>
+        </div>
 
-\begin{document}
-% --- بناء المستند ---
-\makecvtitle
+        <!-- Signatures Section -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 mb-12">
+            <div class="text-center p-6 border-t-2 border-gray-200">
+                <h4 class="font-bold text-gray-700 mb-8 text-lg">اسم المعلم / المعلمة</h4>
+                <div class="h-1 bg-gray-100 w-3/4 mx-auto mb-2"></div>
+                <input type="text" placeholder="..................................." class="text-center border-none w-full font-bold text-blue-900">
+            </div>
+            <div class="text-center p-6 border-t-2 border-gray-200">
+                <h4 class="font-bold text-gray-700 mb-8 text-lg">مقدم خدمة دعم التميز</h4>
+                <div class="h-1 bg-gray-100 w-3/4 mx-auto mb-2"></div>
+                <input type="text" placeholder="..................................." class="text-center border-none w-full font-bold text-blue-900">
+            </div>
+            <div class="text-center p-6 border-t-2 border-gray-200">
+                <h4 class="font-bold text-gray-700 mb-8 text-lg">اسم مدير / مديرة المدرسة</h4>
+                <div class="h-1 bg-gray-100 w-3/4 mx-auto mb-2"></div>
+                <input type="text" placeholder="..................................." class="text-center border-none w-full font-bold text-blue-900">
+            </div>
+        </div>
 
-\section{نبذة مهنية}
-\cvitem{}{مصمم ومحترف يمتلك خبرة واسعة في مجال [مجالك هنا]. أركز دائماً على التفاصيل الدقيقة وجودة المخرجات النهائية، مع الالتزام التام بمعايير الطباعة والتصميم الأكاديمي والمهني.}
+        <!-- Action Buttons -->
+        <div class="flex justify-center gap-4 mt-10 no-print">
+            <button onclick="window.print()" class="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 shadow-lg flex items-center gap-2 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                </svg>
+                طباعة التقرير
+            </button>
+            <button onclick="alert('تم حفظ البيانات بنجاح (محاكاة)')" class="bg-gray-800 text-white px-8 py-3 rounded-xl font-bold hover:bg-black shadow-lg flex items-center gap-2 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+                </svg>
+                حفظ التقرير
+            </button>
+        </div>
 
-\section{الخبرات العملية}
-\cventry{2020--الآن}{مدير مشاريع أول}{شركة التقنية الحديثة}{الرياض}{}{
-\begin{itemize}
-    \item إدارة فريق مكون من 10 أشخاص لتنفيذ مشاريع التصميم.
-    \item ضمان جودة المخرجات الطباعية والرقمية بنسبة 100\%.
-    \item تحسين سير العمل لزيادة الإنتاجية وتقليل الأخطاء.
-\end{itemize}}
+    </main>
 
-\cventry{2017--2020}{مسؤول جودة}{مؤسسة الإبداع}{جدة}{}{
-\begin{itemize}
-    \item مراجعة كافة التصاميم قبل إرسالها للمطبعة.
-    \item التأكد من دقة الألوان (CMYK) والمقاسات.
-\end{itemize}}
+    <footer class="mt-10 py-6 text-center text-gray-400 text-xs no-print border-t border-gray-200">
+        إعداد وتصميم الأستاذ محمد علي عسيري © 1447هـ | تقرير نواتج التعلم
+    </footer>
 
-\section{التعليم}
-\cventry{2013--2017}{بكالوريوس في التصميم الجرافيكي}{جامعة الملك سعود}{الرياض}{معدل 4.5/5}{مشروع التخرج ركز على تقنيات الطباعة الحديثة.}
-
-\section{المهارات التقنية}
-\cvdoubleitem{برامج التصميم}{Photoshop, Illustrator, InDesign}{أنظمة التشغيل}{Windows, Mac OS}
-\cvdoubleitem{لغات البرمجة}{LaTeX, HTML, CSS}{أدوات مكتبية}{Microsoft Office Suite}
-
-\section{اللغات}
-\cvitemwithcomment{العربية}{اللغة الأم}{فصاحة عالية وكتابة أكاديمية}
-\cvitemwithcomment{النجيزية}{مستوى متقدم}{تحدث وكتابة}
-
-\section{معلومات إضافية}
-\cvlistitem{حاصل على جائزة التميز في التصميم لعام 2021.}
-\cvlistitem{عضو في جمعية المصممين المحترفين.}
-
-\end{document}
+</body>
+</html>
